@@ -1,0 +1,100 @@
+#title {
+    text-align: center;
+    margin-right: 25%;
+}
+
+#new-btn {
+    display: block;
+    font-size: 1rem;
+    color: white;
+    background-color:green;
+    border-radius: 10%;
+    border: 1px solid black;
+    padding: .5% 1%;
+    margin-bottom: 1%;
+}
+
+#new-btn:hover {
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+.current-project {
+    border: none;
+    background-color: white;
+}
+
+.current-project, .project-btn {
+    font-size: 1rem;
+    padding: .5%;
+    margin-bottom: 1%;
+}
+
+.todo-div {
+    display: grid;
+    grid-template-columns: 1fr 32fr;
+    width: 75%;
+}
+
+.btn-div {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.btn-div > * {
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+
+.btn-div > *:hover {
+    cursor: pointer;
+}
+
+.check-btn:hover, .edit-btn:hover {
+    background-color: lightgray;
+}
+
+.delete-btn:hover {
+    background-color: rgb(210, 1, 1);
+}
+
+.delete-btn {
+    background-color: rgb(255, 42, 42);
+}
+
+.icon {
+    width: 100%;
+}
+
+.todo-content-div {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+    grid-template-rows: min-content 1fr;
+    padding: .5%;
+}
+
+.todo-content-div > * {
+    font-size: 1.1rem;
+}
+
+.todo-title {
+    font-size: 1.3rem;
+}
+
+.todo-description {
+    grid-row-start: 2;
+}
+
+.todo-priority {
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+.todo-due-date, .todo-priority {
+    text-align: right;
+}

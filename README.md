@@ -1,2 +1,2 @@
 # Todo-list
-A simple todo list made with webpack
+A simple todo list made with webpack and date-fns
