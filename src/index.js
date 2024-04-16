@@ -9,6 +9,7 @@ let dateYear = 0;
 let dateMonth = 0;
 let dateDay = 0;
 let priority = "";
+let project = "default";
 
 function addTodo() {
     title = prompt("Title of todo:")
@@ -36,10 +37,17 @@ function addTodo() {
                         window.alert("Invalid priority.");
                     } else {
                         console.log("Valid todo!");
+                        storeData(title, description, dateYear, dateMonth, dateDay, priority, project);
                     }
                 }
             }
-            
         }
     }
+}
+
+function storeData(title, description, dateYear, dateMonth, dateDay, priority, project){
+    localStorage.setItem(`${project} title`, title);
+    localStorage.setItem(`${project} description`, description);
+    localStorage.setItem(`${project} dueDate`, `${dateMonth}/${dateDay}/${dateYear}`);
+    localStorage.setItem(`${project} priority`, priority.toLowerCase());
 }
