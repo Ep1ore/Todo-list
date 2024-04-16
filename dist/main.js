@@ -1,9 +1,1 @@
-const newBtn = document.getElementById("new-btn");
-newBtn.addEventListener("click", addTodo);
-
-function addTodo() {
-    const title = prompt("Title of todo:")
-    const description = prompt("Description:")
-    const dueDate = prompt("Due date of todo (use MM/DD/YYYY) format:")
-    const priority = prompt("Priority of todo (Low, Medium, High):")
-}
+(()=>{"use strict";document.getElementById("new-btn").addEventListener("click",(function(){o=prompt("Title of todo:"),""==o?window.alert("You need a title for your todo."):(t=prompt("Description:"),r=prompt("Month of todo (number):"),0==r?window.alert("You need to add the month of the todo."):(n=prompt("Day of todo:"),0==n?window.alert("You need to add the day of the todo."):(e=prompt("Year of todo:"),r=parseFloat(r),n=parseFloat(n),e=parseFloat(e),function(o,t,e){if(arguments.length<3)throw new TypeError("3 argument required, but only "+arguments.length+" present");var r=new Date(o,t,e);return r.getFullYear()===o&&r.getMonth()===t&&r.getDate()===e}(e,r-1,n)?(d=prompt("Priority of todo (Low, Medium, High):"),d=d.toLowerCase(),"low"!==d&&"medium"!==d&&"high"!==d?window.alert("Invalid priority."):console.log("Valid todo!")):window.alert("Invalid date."))))}));let o="",t="",e=0,r=0,n=0,d=""})();
