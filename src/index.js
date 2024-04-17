@@ -1,5 +1,5 @@
 import { isExists } from "date-fns";
-import { appendTodo } from "./dom";
+import { appendTodo, loadTodos } from "./dom";
 
 const newBtn = document.getElementById("new-btn");
 newBtn.addEventListener("click", addTodo);
@@ -12,7 +12,9 @@ let dateDay = 0;
 let priority = "";
 export let project = "default";
 let todoAmount = 0;
-export let currentTodo = 0;
+let currentTodo = 0;
+loadTodos();
+
 
 function addTodo() {
     title = prompt("Title of todo:")
@@ -40,10 +42,10 @@ function addTodo() {
                         window.alert("Invalid priority.");
                     } else {
                         console.log("Valid todo!");
-                        currentTodo += 1;
-                        checkTodoAmount();
-                        storeData(title, description, dateYear, dateMonth, dateDay, priority);
-                        appendTodo();
+                        currentTodo = todoAmount + 1;
+                        addTodoAmount();
+                        storeData();
+                        appendTodo(currentTodo);
                     }
                 }
             }
@@ -51,16 +53,16 @@ function addTodo() {
     }
 }
 
-function checkTodoAmount(){
-    if(!localStorage.getItem("todoAmount")){
+function addTodoAmount(){
+    if(localStorage.getItem(`${project} todoAmount`)){
         todoAmount += 1;
-        localStorage.setItem(`${project} todoAmount`, todoAmount);
     } else {
-        todoAmount = localStorage.getItem(`todoAmount ${project}`);
+        todoAmount = 1;
     }
+    localStorage.setItem(`${project} todoAmount`, todoAmount);
 }
 
-function storeData(title, description, dateYear, dateMonth, dateDay, priority){
+function storeData(){
     localStorage.setItem(`${project} ${currentTodo} title`, title);
     localStorage.setItem(`${project} ${currentTodo} description`, description);
     localStorage.setItem(`${project} ${currentTodo} dueDate`, `${dateMonth}/${dateDay}/${dateYear}`);

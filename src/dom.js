@@ -1,9 +1,9 @@
-import { project, currentTodo } from './index.js';
+import { project } from './index.js';
 
-export function appendTodo(){
+export function appendTodo(currentTodo){
     const todoDiv = document.createElement("div"); 
     todoDiv.classList.add("todo-div");
-    todoDiv.id = project;
+    todoDiv.id = `${project} ${currentTodo}`;
 
     const btnDiv = document.createElement("div");
     btnDiv.classList.add("btn-div");
@@ -13,7 +13,7 @@ export function appendTodo(){
     checkBtn.classList.add("check-btn");
     const checkImg = document.createElement("img")
     checkImg.src = "../src/img/check.png";
-    checkImg.alt = `Check ${project}`;
+    checkImg.alt = `Check ${localStorage.getItem(`${project} ${currentTodo} title`)} from ${project}`;
     checkImg.classList.add("icon");
     checkBtn.appendChild(checkImg);
     btnDiv.appendChild(checkBtn);
@@ -22,7 +22,7 @@ export function appendTodo(){
     editBtn.classList.add("edit-btn");
     const editImg = document.createElement("img")
     editImg.src = "../src/img/edit.png";
-    editImg.alt = `Edit ${project}`;
+    editImg.alt = `Edit ${localStorage.getItem(`${project} ${currentTodo} title`)} from ${project}`;
     editImg.classList.add("icon");
     editBtn.appendChild(editImg);
     btnDiv.appendChild(editBtn);
@@ -31,7 +31,7 @@ export function appendTodo(){
     deleteBtn.classList.add("delete-btn");
     const deleteImg = document.createElement("img")
     deleteImg.src = "../src/img/delete.png";
-    deleteImg.alt = `Delete ${project}`;
+    deleteImg.alt = `Delete ${localStorage.getItem(`${project} ${currentTodo} title`)} from ${project}`;
     deleteImg.classList.add("icon");
     deleteBtn.appendChild(deleteImg);
     btnDiv.appendChild(deleteBtn);
@@ -63,4 +63,14 @@ export function appendTodo(){
 
     const todos = document.getElementById("todos");
     todos.appendChild(todoDiv);
+}
+
+export function loadTodos(){
+    if(localStorage.getItem(`${project} todoAmount`)){
+        let amount = Number(localStorage.getItem(`${project} todoAmount`));
+        for(let i = 0; i < amount; i++){
+            let current = i + 1;
+            appendTodo(current);
+        }
+    }
 }
