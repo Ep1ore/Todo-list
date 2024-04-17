@@ -1,4 +1,5 @@
 import { isExists } from "date-fns";
+import { appendTodo } from "./dom";
 
 const newBtn = document.getElementById("new-btn");
 newBtn.addEventListener("click", addTodo);
@@ -9,9 +10,9 @@ let dateYear = 0;
 let dateMonth = 0;
 let dateDay = 0;
 let priority = "";
-let project = "default";
+export let project = "default";
 let todoAmount = 0;
-let currentTodo = 0;
+export let currentTodo = 0;
 
 function addTodo() {
     title = prompt("Title of todo:")
@@ -53,7 +54,7 @@ function addTodo() {
 function checkTodoAmount(){
     if(!localStorage.getItem("todoAmount")){
         todoAmount += 1;
-        localStorage.setItem(`todoAmount ${project}`, todoAmount);
+        localStorage.setItem(`${project} todoAmount`, todoAmount);
     } else {
         todoAmount = localStorage.getItem(`todoAmount ${project}`);
     }
