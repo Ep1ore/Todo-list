@@ -10,6 +10,8 @@ let dateMonth = 0;
 let dateDay = 0;
 let priority = "";
 let project = "default";
+let todoAmount = 0;
+let currentTodo = 0;
 
 function addTodo() {
     title = prompt("Title of todo:")
@@ -37,7 +39,10 @@ function addTodo() {
                         window.alert("Invalid priority.");
                     } else {
                         console.log("Valid todo!");
-                        storeData(title, description, dateYear, dateMonth, dateDay, priority, project);
+                        currentTodo += 1;
+                        checkTodoAmount();
+                        storeData(title, description, dateYear, dateMonth, dateDay, priority);
+                        appendTodo();
                     }
                 }
             }
@@ -45,9 +50,18 @@ function addTodo() {
     }
 }
 
-function storeData(title, description, dateYear, dateMonth, dateDay, priority, project){
-    localStorage.setItem(`${project} title`, title);
-    localStorage.setItem(`${project} description`, description);
-    localStorage.setItem(`${project} dueDate`, `${dateMonth}/${dateDay}/${dateYear}`);
-    localStorage.setItem(`${project} priority`, priority.toLowerCase());
+function checkTodoAmount(){
+    if(!localStorage.getItem("todoAmount")){
+        todoAmount += 1;
+        localStorage.setItem(`todoAmount ${project}`, todoAmount);
+    } else {
+        todoAmount = localStorage.getItem(`todoAmount ${project}`);
+    }
+}
+
+function storeData(title, description, dateYear, dateMonth, dateDay, priority){
+    localStorage.setItem(`${project} ${currentTodo} title`, title);
+    localStorage.setItem(`${project} ${currentTodo} description`, description);
+    localStorage.setItem(`${project} ${currentTodo} dueDate`, `${dateMonth}/${dateDay}/${dateYear}`);
+    localStorage.setItem(`${project} ${currentTodo} priority`, priority.toLowerCase());
 }
