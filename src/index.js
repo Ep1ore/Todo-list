@@ -14,7 +14,9 @@ export let project = "default";
 let todoAmount = 0;
 let currentTodo = 0;
 loadTodos();
-
+if(localStorage.getItem(`${project} todoAmount`)){
+    todoAmount = Number(localStorage.getItem(`${project} todoAmount`));
+}
 
 function addTodo() {
     title = prompt("Title of todo:")

@@ -58,6 +58,7 @@ export function appendTodo(currentTodo){
 
     const todoPriority = document.createElement("p");
     todoPriority.classList.add("todo-priority");
+    todoPriority.classList.add(localStorage.getItem(`${project} ${currentTodo} priority`));
     todoPriority.textContent = `Priority: ${localStorage.getItem(`${project} ${currentTodo} priority`)}`;
     todoContentDiv.appendChild(todoPriority);
 

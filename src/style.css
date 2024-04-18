@@ -98,3 +98,15 @@
 .todo-due-date, .todo-priority {
     text-align: right;
 }
+
+.low {
+    color: gray;
+}
+
+.medium {
+    color: #d4d430;
+}
+
+.high {
+    color: red;
+}
