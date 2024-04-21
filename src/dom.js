@@ -11,7 +11,11 @@ export function appendTodo(currentTodo){
 
     const checkBtn = document.createElement("button");
     checkBtn.classList.add("check-btn");
-    localStorage.setItem(`${project} ${currentTodo} check`, false);
+    if(localStorage.getItem(`${project} ${currentTodo} check`) == "true"){
+        checkBtn.classList.add("checked-btn");
+    } else {
+        localStorage.setItem(`${project} ${currentTodo} check`, false);
+    }
     checkBtn.addEventListener("click", function(){
         if(localStorage.getItem(`${project} ${currentTodo} check`) == "false"){
             localStorage.setItem(`${project} ${currentTodo} check`, true);
