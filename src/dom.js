@@ -11,7 +11,17 @@ export function appendTodo(currentTodo){
 
     const checkBtn = document.createElement("button");
     checkBtn.classList.add("check-btn");
-    const checkImg = document.createElement("img")
+    localStorage.setItem(`${project} ${currentTodo} check`, false);
+    checkBtn.addEventListener("click", function(){
+        if(localStorage.getItem(`${project} ${currentTodo} check`) == "false"){
+            localStorage.setItem(`${project} ${currentTodo} check`, true);
+            checkBtn.classList.add("checked-btn");
+        } else{
+            localStorage.setItem(`${project} ${currentTodo} check`, false);
+            checkBtn.classList.remove("checked-btn");
+        }
+    })
+    const checkImg = document.createElement("img");
     checkImg.src = "../src/img/check.png";
     checkImg.alt = `Check ${localStorage.getItem(`${project} ${currentTodo} title`)} from ${project}`;
     checkImg.classList.add("icon");
@@ -35,7 +45,6 @@ export function appendTodo(currentTodo){
     deleteImg.classList.add("icon");
     deleteBtn.appendChild(deleteImg);
     btnDiv.appendChild(deleteBtn);
-
 
     const todoContentDiv = document.createElement("div");
     todoContentDiv.classList.add("todo-content-div");

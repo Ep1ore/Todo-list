@@ -110,3 +110,11 @@
 .high {
     color: red;
 }
+
+.checked-btn {
+    background-color: rgb(0, 200, 0);
+}
+
+.checked-btn:hover {
+    background-color: green;
+}

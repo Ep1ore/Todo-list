@@ -43,7 +43,6 @@ function addTodo() {
                     if(priority !== "low" && priority !== "medium" && priority !== "high"){
                         window.alert("Invalid priority.");
                     } else {
-                        console.log("Valid todo!");
                         currentTodo = todoAmount + 1;
                         addTodoAmount();
                         storeData();
