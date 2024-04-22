@@ -1,4 +1,4 @@
-import { project } from './index.js';
+import { project, changeTodoPositions } from './index.js';
 import { isExists } from "date-fns";
 
 export function appendTodo(currentTodo){
@@ -24,7 +24,7 @@ export function appendTodo(currentTodo){
         } else{
             localStorage.setItem(`${project} ${currentTodo} check`, false);
             checkBtn.classList.remove("checked-btn");
-        }
+        };
     });
     const checkImg = document.createElement("img");
     checkImg.src = "../src/img/check.png";
@@ -43,7 +43,7 @@ export function appendTodo(currentTodo){
                 window.alert("The input cannot be empty.");
             } else {
                 localStorage.setItem(`${project} ${currentTodo} ${toEdit.toLowerCase()}`, edit);
-            }
+            };
         } else if(toEdit.toLowerCase() == "priority") { 
             let edit = prompt("Priority of todo (Low, Medium, High):");
                 if(edit.toLowerCase() == "low"
@@ -52,7 +52,7 @@ export function appendTodo(currentTodo){
                         localStorage.setItem(`${project} ${currentTodo} priority`, edit);
                     } else {
                         window.alert("Invalid priority.");
-                    }
+                    };
         } else if(toEdit.toLowerCase() == "date"){
             let dateMonth = prompt("Month of todo (number):");
             if(dateMonth == 0 || dateMonth == ""){
@@ -69,16 +69,15 @@ export function appendTodo(currentTodo){
                         window.alert("Invalid date.");
                     } else {
                         localStorage.setItem(`${project} ${currentTodo} dueDate`, `${dateMonth}/${dateDay}/${dateYear}`);
-                    }
-                }
-            }
+                    };
+                };
+            };
         } else {
             window.alert("Invalid element.")
-        }
-        clearTodos();
+        };
         loadTodos();
     });
-    const editImg = document.createElement("img")
+    const editImg = document.createElement("img");
     editImg.src = "../src/img/edit.png";
     editImg.alt = `Edit ${localStorage.getItem(`${project} ${currentTodo} title`)} from ${project}`;
     editImg.classList.add("icon");
@@ -87,7 +86,16 @@ export function appendTodo(currentTodo){
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn");
-    const deleteImg = document.createElement("img")
+    deleteBtn.addEventListener("click", function(){
+        localStorage.removeItem(`${project} ${currentTodo} check`);
+        localStorage.removeItem(`${project} ${currentTodo} description`);
+        localStorage.removeItem(`${project} ${currentTodo} dueDate`);
+        localStorage.removeItem(`${project} ${currentTodo} priority`);
+        localStorage.removeItem(`${project} ${currentTodo} title`);
+        changeTodoPositions();
+        loadTodos();
+    });
+    const deleteImg = document.createElement("img");
     deleteImg.src = "../src/img/delete.png";
     deleteImg.alt = `Delete ${localStorage.getItem(`${project} ${currentTodo} title`)} from ${project}`;
     deleteImg.classList.add("icon");
@@ -124,15 +132,16 @@ export function appendTodo(currentTodo){
 }
 
 export function loadTodos(){
+    clearTodos();
     if(localStorage.getItem(`${project} todoAmount`)){
         let amount = Number(localStorage.getItem(`${project} todoAmount`));
         for(let i = 0; i < amount; i++){
             let current = i + 1;
             appendTodo(current);
-        }
-    }
-}
+        };
+    };
+};
 
 function clearTodos(){
     document.getElementById("todos").innerHTML = "";
-}
+};
