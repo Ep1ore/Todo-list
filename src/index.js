@@ -25,11 +25,11 @@ function addTodo() {
     } else {
         description = prompt("Description:")
         dateMonth = prompt("Month of todo (number):");
-        if(dateMonth == 0){
+        if(dateMonth == 0 || dateMonth == ""){
             window.alert("You need to add the month of the todo.");
         } else {
             dateDay = prompt("Day of todo:");
-            if(dateDay == 0){
+            if(dateDay == 0 || dateDay == ""){
                 window.alert("You need to add the day of the todo.");
             } else {
                 dateYear = prompt("Year of todo:");
@@ -38,7 +38,7 @@ function addTodo() {
                 if(!isExists(dateYear, dateMonth - 1, dateDay)){
                     window.alert("Invalid date.");
                 } else {
-                    priority = prompt("Priority of todo (Low, Medium, High):")
+                    priority = prompt("Priority of todo (Low, Medium, High):");
                     priority = priority.toLowerCase();
                     if(priority !== "low" && priority !== "medium" && priority !== "high"){
                         window.alert("Invalid priority.");
